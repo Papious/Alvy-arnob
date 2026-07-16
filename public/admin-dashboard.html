@@ -92,7 +92,7 @@
 
   .thumbs { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; }
   .thumb {
-    aspect-ratio:1/1; border:1px dashed rgba(191,144,73,.3);
+    position:relative; overflow:hidden; aspect-ratio:1/1; border:1px dashed rgba(191,144,73,.3);
     display:flex; align-items:center; justify-content:center;
     color:rgba(255,255,255,.35); font-size:10px; letter-spacing:.2em;
     text-transform:uppercase;
@@ -179,6 +179,7 @@
     .grid-2 { grid-template-columns:1fr; }
   }
 </style>
+<script src="/supabase-env.js"></script>
 </head>
 <body>
   <div class="topbar">
@@ -188,7 +189,7 @@
       <a href="/admin-login.html">Log out</a>
     </div>
   </div>
-  <div class="banner">UI Preview — Static mockup, no backend connected</div>
+  <div class="banner">Connecting to Supabase...</div>
 
   <div class="shell">
     <aside class="side">
@@ -493,5 +494,6 @@
       }
     });
   </script>
+  <script type="module" src="/admin-dashboard.js"></script>
 </body>
 </html>

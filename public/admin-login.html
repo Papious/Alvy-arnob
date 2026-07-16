@@ -73,10 +73,11 @@
   }
   .back:hover { color:var(--gold); }
 </style>
+<script src="/supabase-env.js"></script>
 </head>
 <body>
   <a class="logo" href="/">ALVY <span>ARNOB</span></a>
-  <form class="card" onsubmit="event.preventDefault(); window.location.href='/admin-dashboard.html';">
+  <form class="card">
     <h1>ADMIN LOGIN</h1>
     <div class="sub">Restricted Access</div>
     <label for="email">Email</label>
@@ -84,8 +85,9 @@
     <label for="pw">Password</label>
     <input id="pw" type="password" autocomplete="off" placeholder="••••••••" />
     <button class="btn" type="submit">Log In</button>
-    <div class="note">UI Preview — Backend not yet connected</div>
+    <div class="note">Supabase login</div>
     <a class="back" href="/">← Back to site</a>
   </form>
+  <script type="module" src="/admin-login.js"></script>
 </body>
 </html>
