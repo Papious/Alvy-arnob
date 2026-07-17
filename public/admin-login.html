@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login — Alvy Arnob</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+  :root { --gold:#BF9049; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    background:#000; color:#fff; min-height:100vh;
+    font-family:'Nunito Sans', 'Helvetica Neue', Arial, sans-serif;
+    display:flex; align-items:center; justify-content:center; padding:32px;
+  }
+  .logo {
+    position:absolute; top:24px; left:32px;
+    font-family:'DM Serif Display', Georgia, serif; font-weight:400; color:#fff; letter-spacing:normal; font-size:clamp(20px, 2.5vw, 32px); text-transform:uppercase;
+    text-decoration:none;
+  }
+  .logo span { color:var(--gold); }
+  .card {
+    width:100%; max-width:420px;
+    border:1px solid rgba(191,144,73,0.25);
+    background:rgba(255,255,255,0.02);
+    padding:48px 40px;
+    border-radius:2px;
+  }
+  h1 {
+    font-family:'DM Serif Display', serif;
+    color:var(--gold);
+    font-size:34px; letter-spacing:.08em;
+    text-align:center; margin-bottom:8px; font-weight:400;
+  }
+  .sub {
+    text-align:center; font-size:11px; letter-spacing:.24em;
+    text-transform:uppercase; color:rgba(255,255,255,.5);
+    margin-bottom:36px;
+  }
+  label {
+    display:block; font-size:10px; letter-spacing:.2em;
+    text-transform:uppercase; color:rgba(255,255,255,.7);
+    margin-bottom:8px;
+  }
+  input {
+    width:100%; background:transparent; color:#fff;
+    border:none; border-bottom:1px solid rgba(255,255,255,.25);
+    padding:10px 2px; font-size:14px; font-family:inherit;
+    letter-spacing:.05em; outline:none; margin-bottom:24px;
+    transition:border-color .3s ease;
+  }
+  input:focus { border-bottom-color:var(--gold); }
+  .btn {
+    width:100%; background:var(--gold); color:#000;
+    border:none; border-radius:999px; padding:14px 28px;
+    font-family:inherit; font-size:12px; font-weight:600;
+    letter-spacing:.24em; text-transform:uppercase;
+    cursor:pointer; margin-top:8px;
+    transition:background .3s ease, transform .2s ease;
+  }
+  .btn:hover { background:#d5a760; }
+  .note {
+    margin-top:24px; text-align:center;
+    font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.35);
+  }
+  .back {
+    display:block; text-align:center; margin-top:20px;
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    color:rgba(255,255,255,.5); text-decoration:none;
+  }
+  .back:hover { color:var(--gold); }
+</style>
+<script src="/supabase-env.js"></script>
+</head>
+<body>
+  <a class="logo" href="/">ALVY <span>ARNOB</span></a>
+  <form class="card">
+    <h1>ADMIN LOGIN</h1>
+    <div class="sub">Restricted Access</div>
+    <label for="email">Email</label>
+    <input id="email" type="email" autocomplete="off" placeholder="admin@alvyarnob.com" />
+    <label for="pw">Password</label>
+    <input id="pw" type="password" autocomplete="off" placeholder="••••••••" />
+    <button class="btn" type="submit">Log In</button>
+    <div class="note">Supabase login</div>
+    <a class="back" href="/">← Back to site</a>
+  </form>
+  <script type="module" src="/admin-login.js"></script>
+</body>
+</html>
