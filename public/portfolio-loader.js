@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { isConfigured, loadSiteData, mediaValue, submitContactMessage, textValue } from "./alvya-supabase.js";
+=======
+import { isConfigured, loadSiteData, mediaValue, textValue } from "./alvya-supabase.js";
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 
 const esc = (value) => String(value || "").replace(/[&<>"']/g, (ch) => ({
   "&": "&amp;",
@@ -152,6 +156,7 @@ function renderGallery(category, items) {
   }
 }
 
+<<<<<<< HEAD
 function renderHeroSlides(slides) {
   const container = document.getElementById("parallaxBg");
   if (!container || !slides.length) return;
@@ -213,6 +218,9 @@ function wireContactForm() {
 
 async function initPortfolio() {
   wireContactForm();
+=======
+async function initPortfolio() {
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   if (!isConfigured()) return;
   try {
     const data = await loadSiteData();
@@ -221,7 +229,10 @@ async function initPortfolio() {
     renderAnimation(data.items);
     renderGallery("digital", data.items);
     renderGallery("traditional", data.items);
+<<<<<<< HEAD
     renderHeroSlides(data.heroSlides);
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
     if (typeof window.wireGallery === "function") window.wireGallery();
     if (typeof window.feBUpdate === "function") window.feBUpdate();
   } catch (error) {

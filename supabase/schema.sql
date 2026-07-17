@@ -1,5 +1,6 @@
 create extension if not exists pgcrypto;
 
+<<<<<<< HEAD
 -- ============================================================
 -- ADMIN IDENTITY (decoupled from email so changing the admin's
 -- login email in Settings never locks them out of RLS-protected
@@ -26,6 +27,8 @@ grant execute on function public.is_admin() to authenticated, anon;
 -- ============================================================
 -- CORE CONTENT TABLES
 -- ============================================================
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 create table if not exists public.site_content (
   key text primary key,
   value jsonb not null default '{}'::jsonb,
@@ -57,6 +60,7 @@ create table if not exists public.portfolio_items (
   updated_at timestamptz not null default now()
 );
 
+<<<<<<< HEAD
 -- Home page hero slideshow images
 create table if not exists public.hero_slides (
   id uuid primary key default gen_random_uuid(),
@@ -85,6 +89,12 @@ alter table public.hero_slides enable row level security;
 alter table public.contact_messages enable row level security;
 
 -- ---- site_content ----
+=======
+alter table public.site_content enable row level security;
+alter table public.achievements enable row level security;
+alter table public.portfolio_items enable row level security;
+
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 drop policy if exists "Public can read site content" on public.site_content;
 create policy "Public can read site content"
 on public.site_content for select
@@ -93,10 +103,16 @@ using (true);
 drop policy if exists "Admin can write site content" on public.site_content;
 create policy "Admin can write site content"
 on public.site_content for all
+<<<<<<< HEAD
 using (public.is_admin())
 with check (public.is_admin());
 
 -- ---- achievements ----
+=======
+using ((auth.jwt() ->> 'email') = 'papious777@gmail.com')
+with check ((auth.jwt() ->> 'email') = 'papious777@gmail.com');
+
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 drop policy if exists "Public can read achievements" on public.achievements;
 create policy "Public can read achievements"
 on public.achievements for select
@@ -105,10 +121,16 @@ using (true);
 drop policy if exists "Admin can write achievements" on public.achievements;
 create policy "Admin can write achievements"
 on public.achievements for all
+<<<<<<< HEAD
 using (public.is_admin())
 with check (public.is_admin());
 
 -- ---- portfolio_items ----
+=======
+using ((auth.jwt() ->> 'email') = 'papious777@gmail.com')
+with check ((auth.jwt() ->> 'email') = 'papious777@gmail.com');
+
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 drop policy if exists "Public can read portfolio items" on public.portfolio_items;
 create policy "Public can read portfolio items"
 on public.portfolio_items for select
@@ -117,6 +139,7 @@ using (true);
 drop policy if exists "Admin can write portfolio items" on public.portfolio_items;
 create policy "Admin can write portfolio items"
 on public.portfolio_items for all
+<<<<<<< HEAD
 using (public.is_admin())
 with check (public.is_admin());
 
@@ -159,6 +182,11 @@ using (public.is_admin());
 -- ============================================================
 -- STORAGE
 -- ============================================================
+=======
+using ((auth.jwt() ->> 'email') = 'papious777@gmail.com')
+with check ((auth.jwt() ->> 'email') = 'papious777@gmail.com');
+
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 insert into storage.buckets (id, name, public)
 values ('portfolio-media', 'portfolio-media', true)
 on conflict (id) do update set public = excluded.public;
@@ -173,7 +201,11 @@ create policy "Admin can upload portfolio media"
 on storage.objects for insert
 with check (
   bucket_id = 'portfolio-media'
+<<<<<<< HEAD
   and public.is_admin()
+=======
+  and (auth.jwt() ->> 'email') = 'papious777@gmail.com'
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 );
 
 drop policy if exists "Admin can update portfolio media" on storage.objects;
@@ -181,11 +213,19 @@ create policy "Admin can update portfolio media"
 on storage.objects for update
 using (
   bucket_id = 'portfolio-media'
+<<<<<<< HEAD
   and public.is_admin()
 )
 with check (
   bucket_id = 'portfolio-media'
   and public.is_admin()
+=======
+  and (auth.jwt() ->> 'email') = 'papious777@gmail.com'
+)
+with check (
+  bucket_id = 'portfolio-media'
+  and (auth.jwt() ->> 'email') = 'papious777@gmail.com'
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 );
 
 drop policy if exists "Admin can delete portfolio media" on storage.objects;
@@ -193,6 +233,7 @@ create policy "Admin can delete portfolio media"
 on storage.objects for delete
 using (
   bucket_id = 'portfolio-media'
+<<<<<<< HEAD
   and public.is_admin()
 );
 
@@ -205,3 +246,7 @@ using (
 insert into public.app_admins (user_id)
 select id from auth.users where email = 'papious777@gmail.com'
 on conflict (user_id) do nothing;
+=======
+  and (auth.jwt() ->> 'email') = 'papious777@gmail.com'
+);
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d

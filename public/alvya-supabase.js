@@ -52,6 +52,7 @@ export async function signOut() {
   return client.auth.signOut();
 }
 
+<<<<<<< HEAD
 // Checks admin status via the DB-side is_admin() function (backed by the
 // app_admins table) rather than comparing emails client-side. This keeps
 // working even after the admin changes their login email in Settings.
@@ -81,12 +82,23 @@ export async function loadSiteData() {
     client.from("achievements").select("*").order("sort_order", { ascending: true }).order("year", { ascending: false }),
     client.from("portfolio_items").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true }),
     client.from("hero_slides").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true })
+=======
+export async function loadSiteData() {
+  const client = requireSupabase();
+  const [contentRes, achievementRes, itemRes] = await Promise.all([
+    client.from("site_content").select("key,value"),
+    client.from("achievements").select("*").order("sort_order", { ascending: true }).order("year", { ascending: false }),
+    client.from("portfolio_items").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true })
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   ]);
 
   if (contentRes.error) throw contentRes.error;
   if (achievementRes.error) throw achievementRes.error;
   if (itemRes.error) throw itemRes.error;
+<<<<<<< HEAD
   if (heroRes.error) throw heroRes.error;
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 
   const content = {};
   for (const row of contentRes.data || []) content[row.key] = row;
@@ -94,8 +106,12 @@ export async function loadSiteData() {
   return {
     content,
     achievements: achievementRes.data || [],
+<<<<<<< HEAD
     items: itemRes.data || [],
     heroSlides: heroRes.data || []
+=======
+    items: itemRes.data || []
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   };
 }
 
@@ -178,6 +194,7 @@ export async function uploadPublicFile(file, folder) {
   const { data } = client.storage.from(STORAGE_BUCKET).getPublicUrl(path);
   return { path, url: data.publicUrl };
 }
+<<<<<<< HEAD
 
 // ---------------- Hero slides (home page slideshow) ----------------
 
@@ -249,3 +266,5 @@ export async function deleteContactMessage(id) {
   const { error } = await client.from("contact_messages").delete().eq("id", id);
   if (error) throw error;
 }
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d

@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
   deleteAchievement,
   deleteContactMessage,
   deleteHeroSlide,
@@ -17,6 +18,18 @@ import {
   signOut,
   updateAdminEmail,
   updateAdminPassword,
+=======
+  ADMIN_EMAIL,
+  deleteAchievement,
+  deletePortfolioItem,
+  getSession,
+  isConfigured,
+  loadSiteData,
+  saveAchievement,
+  saveContent,
+  savePortfolioItem,
+  signOut,
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   uploadPublicFile
 } from "./alvya-supabase.js";
 
@@ -24,8 +37,11 @@ const state = {
   content: {},
   achievements: [],
   items: [],
+<<<<<<< HEAD
   heroSlides: [],
   messages: [],
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   editingAchievementId: null
 };
 
@@ -150,6 +166,7 @@ function renderGallery(category) {
   `).join("");
 }
 
+<<<<<<< HEAD
 function renderHeroSlides() {
   const wrap = document.querySelector("#home-slides .thumbs");
   if (!wrap) return;
@@ -197,6 +214,8 @@ function fillSettings() {
   if (emailInput && !emailInput.value) emailInput.placeholder = $(".who")?.dataset.email || "";
 }
 
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 function renderAll() {
   fillCopy();
   renderStats();
@@ -204,9 +223,12 @@ function renderAll() {
   renderAnimation();
   renderGallery("digital");
   renderGallery("traditional");
+<<<<<<< HEAD
   renderHeroSlides();
   renderMessages();
   fillSettings();
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
 }
 
 async function refresh() {
@@ -214,12 +236,15 @@ async function refresh() {
   state.content = data.content;
   state.achievements = data.achievements;
   state.items = data.items;
+<<<<<<< HEAD
   state.heroSlides = data.heroSlides;
   try {
     state.messages = await getContactMessages();
   } catch (error) {
     console.warn("Could not load messages:", error);
   }
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   renderAll();
 }
 
@@ -408,6 +433,7 @@ async function handleClick(event) {
       await refresh();
       setStatus("Image deleted.");
     }
+<<<<<<< HEAD
     return;
   }
 
@@ -510,6 +536,8 @@ async function handleClick(event) {
       setStatus(error.message || "Could not update password.");
     }
     return;
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
   }
 }
 
@@ -525,6 +553,7 @@ async function boot() {
       window.location.href = "/admin-login.html";
       return;
     }
+<<<<<<< HEAD
     let admin = false;
     try {
       admin = await isAdmin();
@@ -532,12 +561,18 @@ async function boot() {
       console.warn("Admin check failed:", error);
     }
     if (!admin) {
+=======
+    if (session.user?.email !== ADMIN_EMAIL) {
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
       await signOut();
       window.location.href = "/admin-login.html";
       return;
     }
     $(".who").textContent = `Signed in as ${session.user.email}`;
+<<<<<<< HEAD
     $(".who").dataset.email = session.user.email;
+=======
+>>>>>>> e4bced0ecb5624a4ee2d45c96dca95333c4c8f3d
     setStatus("Connected to Supabase.");
     await refresh();
     document.addEventListener("click", handleClick, true);
